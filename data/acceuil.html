@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<!-- DEBUT de l entete HEAD -->
+<!-- ---------------------- -->
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>ESP sat</title>
+<div id="prime">
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+-->
+</div>
+<script type="text/javascript">
+
+if(navigator.onLine)
+  {
+	document.getElementById('prime').innerHtml='<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">';
+	document.getElementById('prime').innerHtml='<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"><\/script>';
+	document.getElementById('prime').innerHtml='<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"><\/script>';
+  }
+
+</script>
+</head>
+
+<body>
+<div class="container">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/edit?path=acceuil.html&type=html" aria-controls="home" >Heure chauffe-eau</a></li>
+    <li role="presentation"><a href="/edit?path=settings.html&type=html" aria-controls="settings"><span class="glyphicon glyphicon-cog"></span> Configuration Wifi</a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+  <!-- PAGE 1 : Datas sat -->
+<!-- ------------------------- -->
+    <div><h1>Données du satellite</h1>
+	
+	<div class="panel panel-primary">
+	<div class="panel-heading">Programmation heure</div>
+	<div class="panel-body">
+	<form class="form-horizontal" method="post" action="config_local_network">
+		  <div class="form-group">
+			<label for="inputON" class="col-sm-2 control-label">Heure mise ON</label>
+			<div class="col-sm-10">
+			  <input type="text" class="form-control" name="relais1_ON" id="inputON" placeholder="Sous la forme 11:42">
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label for="inputOFF" class="col-sm-2 control-label">Heure mise OFF</label>
+			<div class="col-sm-10">
+			  <input type="text" name="relais1_OFF" class="form-control" id="inputOFF" placeholder="Sous la forme 12:52">
+			</div>
+		  </div>
+
+		  <div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+			  <button id="modif_reseau" type="submit" class="btn btn-default">Envoyer mise à jour</button>
+			</div>
+		  </div>
+		</form>
+	<ul class="list-group sensor"></ul></div></div>
+
+<div class="panel panel-primary"><div class="panel-heading">Réglage heure</div>
+	<div class="panel-body">
+	<i><p id="current"> Heure actuelle : </p></i>
+	<form class="form-horizontal" method="post" action="config_local_network">
+		  <div class="form-group">
+			<label for="inputTime class="col-sm-2 control-label">Heure du module : </label>
+			<div class="col-sm-10">
+			  <input type="text" class="form-control" name="time" id="time" placeholder="Sous la forme 15/10/2018 22:14:00">
+			</div>
+			
+		  </div>
+		 
+		  <div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+			  <button id="modif_reseau" type="submit" class="btn btn-default">Envoyer mise à jour</button>
+			</div>
+		  </div>
+		</form>
+	<ul class="list-group action"></ul></div></div>
+</div>
+  </div>
+</div>
+ <script type="text/javascript">
+ function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
+var json_obj = JSON.parse(Get("data_sat.json"));
+document.getElementById('inputON').setAttribute('placeholder','Actuellement : '+json_obj.hour_ON);
+document.getElementById('inputOFF').setAttribute('placeholder','Actuellement : '+json_obj.hour_OFF);
+document.getElementById('current').innerText='Heure actuelle : '+json_obj.Time;
+</script>
+<!-- FIN de l entete BODY et HTML -->
+<!-- ---------------------------- -->
+</body>
+</html>
