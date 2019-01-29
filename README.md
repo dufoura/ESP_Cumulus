@@ -1,7 +1,7 @@
 # ESP_Cumulus
 Module permettant de réguler la programmation de votre cumulus d'eau chaude
 
-#Liste des composants
+1.Liste des composants
 Pour construire cette carte électronique, vous aurez besoin : 
 - 1 ESP8266
 - 1 AMS117 3.3V
